@@ -1,0 +1,28 @@
+[
+    {
+      "id" :"1",
+       "first_name" : "sanjana",
+       "last_name" : "mhaske",
+       "age": "23",
+       "job_title": "frontend devloper",
+       "salary": "20 k"
+    },
+    {       
+      "id" :"2",
+
+        "first_name" : "Ankita",
+        "last_name" : "mhaske",
+        "age": "20",
+        "job_title": "frontend devloper",
+        "salary": "10 k"
+     },
+    {
+      "id" :"3",
+        "first_name" : "pooja",
+        "last_name" : "gaikwad ",
+        "age": "23",
+        "job_title": "backend devloper",
+        "salary": "22 k"
+     }
+     
+]
