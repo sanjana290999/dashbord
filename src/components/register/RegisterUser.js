@@ -36,17 +36,12 @@ const ResgisterUser = () => {
         `${process.env.REACT_APP_BASE_URL}/users/register`,
         newUser
       );
-      // Cookies.set("token", data.data.accessToken, {
-      //   expires: 7,
-      //   secure: true,
-      // });
-      // window.location.reload();
       const data = response.data.data;
       console.log({ data });
       setRegisterUsers((prevUsers) => [...prevUsers, data]);
       setRegister({ email: "", password: "", role: "", username: "" });
       setTimeout(() => {
-        navigate("/dashbord", { replace: true });
+        navigate("/dashboard", { replace: true });
       }, 1000);
     } catch (error) {
       console.log(error.response.data.message);
@@ -66,13 +61,8 @@ const ResgisterUser = () => {
   };
   return (
     <main className="w-full h-screen flex flex-col items-center justify-center bg-gray-50 sm:px-4">
-      <div className="w-full space-y-6 text-gray-600 sm:max-w-md">
+      <div className="w-full space-y-6 text-gray-600 sm:max-w-md px-4">
         <div className="text-center">
-          <img
-            src="https://floatui.com/logo.svg"
-            width={150}
-            className="mx-auto"
-          />
           <div className="mt-5 space-y-2">
             <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
               Create an account
@@ -149,7 +139,7 @@ const ResgisterUser = () => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <g clip-path="url(#clip0_17_40)">
+                <g clipPath="url(#clip0_17_40)">
                   <path
                     d="M47.532 24.5528C47.532 22.9214 47.3997 21.2811 47.1175 19.6761H24.48V28.9181H37.4434C36.9055 31.8988 35.177 34.5356 32.6461 36.2111V42.2078H40.3801C44.9217 38.0278 47.532 31.8547 47.532 24.5528Z"
                     fill="#4285F4"

@@ -1,4 +1,3 @@
-import { logDOM } from "@testing-library/react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -8,6 +7,7 @@ function ForgotPassword() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     setEmail("");
@@ -27,64 +27,67 @@ function ForgotPassword() {
         navigate("/");
       }, 1000);
     } catch (error) {
-      setError("user does not exist ");
+      setError("User does not exist");
       setTimeout(() => {
         setError("");
       }, 2000);
       console.log(error.response.data.message);
     }
   };
+
   return (
-    <main className="w-full h-screen flex flex-col items-center justify-center px-4">
-      <div className="max-w-lg w-full text-gray-600 shadow-xl px-20 py-8">
+    <main className="min-h-screen flex flex-col items-center justify-center px-4 bg-gray-50">
+      <div className="max-w-lg w-full bg-white shadow-xl rounded-lg px-6 py-8 sm:px-10">
         <div className="text-center">
           <img
             src="https://floatui.com/logo.svg"
+            alt="Logo"
             width={150}
             className="mx-auto"
           />
           <div className="mt-5 space-y-2">
             <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">
-              Forgot Password ?
+              Forgot Password?
             </h3>
-            <p className="">
-              Enter your email and we'll send you a link to resent your password
+            <p className="text-gray-600">
+              Enter your email and we'll send you a link to reset your password
             </p>
           </div>
         </div>
         <form onSubmit={handleForgotPassword} className="mt-8 space-y-5">
           <div>
-            <label className="font-medium"> Email</label>
+            <label htmlFor="email" className="font-medium">
+              Email
+            </label>
             <input
+              id="email"
               type="email"
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder=""
               required
-              className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+              className="w-full mt-2 px-3 py-2 text-gray-700 bg-gray-100 outline-none border border-gray-300 focus:border-indigo-600 rounded-lg"
             />
           </div>
 
-          <button className="w-full mt-5 px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
-            submit
+          <button className="w-full mt-5 px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 rounded-lg duration-150">
+            Submit
           </button>
-          {setMessage && (
-            <p className="text-black font bold text-center text-2xl mt-4">
+
+          {message && (
+            <p className="text-green-600 font-bold text-center mt-4">
               {message}
             </p>
           )}
           {error && (
-            <p className="text-red-500 font-bold text-2xl text-center mt-4">
-              {error}
-            </p>
+            <p className="text-red-600 font-bold text-center mt-4">{error}</p>
           )}
         </form>
-        <Link to={"/login"} className=" ml-32 ">
-          <button className="font-bold border-1 border-black p-2 rounded-md hover:bg-gray-300">
-            back to login
-          </button>
-        </Link>
+        <div className="mt-6 text-center">
+          <Link to="/login" className="text-indigo-600 hover:text-indigo-700">
+            Back to login
+          </Link>
+        </div>
       </div>
     </main>
   );

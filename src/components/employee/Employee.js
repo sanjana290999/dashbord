@@ -2,25 +2,28 @@ import React, { useState } from "react";
 import uuid from "react-uuid";
 import Data from "../data/Data.json";
 import AddEmployeeForm from "./AddEmployeeForm";
+
 function EmployeeList() {
   const [employeeData, setEmployeeData] = useState(Data);
   const [editData, setEditData] = useState({});
-
   const [visible, setVisible] = useState(false);
+
   const onClose = () => {
     setVisible(false);
   };
+
   const handleDelete = (id) => {
     const employDataDelete = employeeData.filter((elem) => elem.id !== id);
     setEmployeeData(employDataDelete);
   };
+
   const handleEdit = (elem) => {
     setEditData(elem);
     setVisible(true);
   };
 
   return (
-    <div className="flex flex-col  w-full items-center justify-center mt-10">
+    <div className="flex flex-col w-full items-center justify-center mt-10 p-4">
       {visible && (
         <AddEmployeeForm
           employeeData={employeeData}
@@ -31,33 +34,32 @@ function EmployeeList() {
         />
       )}
       <button
-        className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4"
         onClick={() => setVisible(true)}
       >
-        {" "}
         ADD EMPLOYEE
       </button>
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 w-full">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <table className="min-w-full divide-y divide-gray-200 mt-10  shadow-xl ">
+            <table className="min-w-full divide-y divide-gray-200 mt-10 shadow-xl table-auto">
               <thead className="bg-gray-50">
-                <tr className=" ">
+                <tr>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xl font-bold text-gray-700 uppercase tracking-wider border border-gray-300 "
+                    className="px-6 py-3 text-center text-xl font-bold text-gray-700 uppercase tracking-wider border border-gray-300"
                   >
                     Sr. no
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xl font-bold text-gray-700 uppercase tracking-wider border border-gray-300 "
+                    className="px-6 py-3 text-center text-xl font-bold text-gray-700 uppercase tracking-wider border border-gray-300"
                   >
                     First Name
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-center text-xl font-bold text-gray-700 uppercase tracking-wider border border-gray-300 "
+                    className="px-6 py-3 text-center text-xl font-bold text-gray-700 uppercase tracking-wider border border-gray-300"
                   >
                     Last Name
                   </th>
@@ -89,10 +91,10 @@ function EmployeeList() {
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {employeeData &&
-                  employeeData.map((elem) => (
+                  employeeData.map((elem, index) => (
                     <tr key={elem.id}>
                       <td className="px-6 py-4 whitespace-nowrap border border-gray-300 text-center">
-                        {elem.id}
+                        {index + 1}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap border border-gray-300 text-center">
                         {elem.first_name}
@@ -109,19 +111,17 @@ function EmployeeList() {
                       <td className="px-6 py-4 whitespace-nowrap border border-gray-300 text-center">
                         {elem.salary}
                       </td>
-                      <td>
+                      <td className="px-6 py-4 whitespace-nowrap border border-gray-300 text-center">
                         <button
-                          className=" bg-blue-500 hover:bg-blue-700 text-white font-bold p-2 ml-2 rounded"
+                          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2"
                           onClick={() => handleEdit(elem)}
                         >
-                          {" "}
                           Edit
                         </button>
                         <button
-                          className=" bg-red-500 hover:bg-blue-700 text-white font-bold p-2 ml-2  rounded"
+                          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
                           onClick={() => handleDelete(elem.id)}
                         >
-                          {" "}
                           Delete
                         </button>
                       </td>

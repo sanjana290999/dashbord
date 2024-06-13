@@ -1,6 +1,7 @@
 import { isEmpty } from "lodash";
 import { useState } from "react";
 import uuid from "react-uuid";
+
 function AddEmployeeForm({
   employeeData,
   setEmployeeData,
@@ -28,6 +29,7 @@ function AddEmployeeForm({
       [e.target.name]: value,
     });
   };
+
   const handleSubmite = (e) => {
     e.preventDefault();
     if (isEmpty(editData)) {
@@ -36,13 +38,11 @@ function AddEmployeeForm({
           id: uuid(),
           ...formData,
         };
-        //   console.log({ newEmployeeData });
-        setEmployeeData([...employeeData]);
-        console.log({ employeeData });
+        setEmployeeData([...employeeData, newEmployeeData]);
       }
     } else {
       let index = employeeData.findIndex((elem) => elem.id == editData.id);
-      let newArray = employeeData;
+      let newArray = [...employeeData];
       newArray[index] = formData;
       setEmployeeData(newArray);
       setEditData({});
@@ -51,7 +51,7 @@ function AddEmployeeForm({
   };
 
   return (
-    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+    <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50 p-4 sm:p-6 lg:p-8">
       <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4">Add Employee</h2>
         <form onSubmit={handleSubmite}>
@@ -66,7 +66,7 @@ function AddEmployeeForm({
               type="text"
               id="first_name"
               name="first_name"
-              placeholder="enter your first name"
+              placeholder="Enter your first name"
               value={formData.first_name}
               onChange={handleChange}
               required
@@ -84,7 +84,7 @@ function AddEmployeeForm({
               type="text"
               id="last_name"
               name="last_name"
-              placeholder="enter your last name"
+              placeholder="Enter your last name"
               required
               value={formData.last_name}
               onChange={handleChange}
@@ -102,7 +102,7 @@ function AddEmployeeForm({
               type="text"
               id="age"
               name="age"
-              placeholder="enter your age"
+              placeholder="Enter your age"
               required
               value={formData.age}
               onChange={handleChange}
@@ -111,7 +111,7 @@ function AddEmployeeForm({
           </div>
           <div className="mb-4">
             <label
-              htmlFor="employ_title"
+              htmlFor="job_title"
               className="block text-sm font-medium text-gray-700"
             >
               Job Title
@@ -120,7 +120,7 @@ function AddEmployeeForm({
               type="text"
               id="job_title"
               name="job_title"
-              placeholder="enter your job title"
+              placeholder="Enter your job title"
               required
               value={formData.job_title}
               onChange={handleChange}
@@ -138,7 +138,7 @@ function AddEmployeeForm({
               type="text"
               id="salary"
               name="salary"
-              placeholder="enter your monthaly salary"
+              placeholder="Enter your monthly salary"
               required
               value={formData.salary}
               onChange={handleChange}
@@ -150,13 +150,11 @@ function AddEmployeeForm({
               type="submit"
               className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
             >
-              {!isEmpty(editData) ? "update" : "save"}
+              {!isEmpty(editData) ? "Update" : "Save"}
             </button>
             <button
               type="button"
-              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
-              
-              "
+              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
               onClick={onClose}
             >
               Cancel

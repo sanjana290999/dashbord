@@ -35,8 +35,8 @@ const Dashboard = () => {
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Navbar />
-        <div className="flex-1 w-[80%]  ml-40 p-4">
-          <h1 className="text-2xl font-semibold  mb-4">Dashboard</h1>
+        <div className="flex-1 w-full sm:w-[80%] ml-0 sm:ml-40 p-4">
+          <h1 className="text-2xl font-semibold mb-4">Dashboard</h1>
           <ChartComponent data={employeeData} />
         </div>
       </div>
